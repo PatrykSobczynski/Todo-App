@@ -1,0 +1,104 @@
+$btnColor: #bd5a5a;
+$bcgGradient: linear-gradient(#bd5a5a, #e7a44c);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    font-size: 24px;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+
+    body {
+        background-color: red;
+        background-image: $bcgGradient;
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+
+            main {
+                background-color: rgb(255, 255, 255);
+                border: 1px solid black;
+                width: 60%;
+                padding: 10px;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                border-radius: 10px;
+
+                .mainHeader {
+                    text-align: center;
+                    text-transform: uppercase;
+                    font-size: 34px;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                }
+
+                .addBar {
+                    width: 100%;
+                    margin: 10px 0 30px;
+
+                    .addInput, .addButton {
+                        padding: 10px 20px;
+                    }
+
+                    .addInput {
+                        width: 70%;
+                    }
+
+                    .addButton {
+                        background-color: $btnColor;
+                        border-color: $btnColor;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        color: white;
+                        transition: .3s;
+                        letter-spacing: 1px;
+                        margin-left: 10px;
+                        border-radius: 10px;
+                        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+                    }
+
+                    .addButton:hover {
+                        background-color: transparent;
+                        color: $btnColor;
+                    }
+                }
+
+                .tasks {
+                    .task {
+                        display: flex;
+                        align-items: baseline;
+
+                        .dateTaskAdded {
+                            margin-left: 10px;
+                            font-size: 18px;
+                            color: rgb(88, 88, 88);
+                        }
+
+                        .editTask, .deleteTask {
+                            cursor: pointer;
+                            font-size: 24px;
+                        }
+
+                        .editTask {
+                            margin: 0 7px 0 14px;
+                            color:#eeb56b;
+                        }
+
+                        .deleteTask {
+                            margin: 0 7px;
+                            color: red;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
