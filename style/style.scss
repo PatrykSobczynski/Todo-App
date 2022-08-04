@@ -57,6 +57,7 @@ html {
                         text-transform: uppercase;
                         font-weight: bold;
                         color: white;
+                        cursor: pointer;
                         transition: .3s;
                         letter-spacing: 1px;
                         margin-left: 10px;
@@ -74,27 +75,37 @@ html {
                 .tasks {
                     .task {
                         display: flex;
-                        align-items: baseline;
-
-                        .dateTaskAdded {
-                            margin-left: 10px;
-                            font-size: 18px;
-                            color: rgb(88, 88, 88);
-                        }
-
-                        .editTask, .deleteTask {
+                        align-items: center;
+                        margin: 16px 0;
+           
+                        .editTask, .taskDone, .deleteTask {
                             cursor: pointer;
                             font-size: 24px;
+                        }
+                        
+                        .taskContent {
+                            width: 50%;
                         }
 
                         .editTask {
                             margin: 0 7px 0 14px;
                             color:#eeb56b;
                         }
-
+                        
+                        .taskDone {
+                            margin: 0 10px;
+                            color: rgb(0, 209, 0);
+                        }
+                        
                         .deleteTask {
                             margin: 0 7px;
                             color: red;
+                        }
+
+                        .dateTaskAdded {
+                            margin-left: 10px;
+                            font-size: 18px;
+                            color: rgb(122, 122, 122);
                         }
                     }
                 }

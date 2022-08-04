@@ -59,6 +59,7 @@ html body .wrapper main .addBar .addButton {
   text-transform: uppercase;
   font-weight: bold;
   color: white;
+  cursor: pointer;
   transition: .3s;
   letter-spacing: 1px;
   margin-left: 10px;
@@ -73,18 +74,17 @@ html body .wrapper main .addBar .addButton:hover {
 
 html body .wrapper main .tasks .task {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  margin: 16px 0;
 }
 
-html body .wrapper main .tasks .task .dateTaskAdded {
-  margin-left: 10px;
-  font-size: 18px;
-  color: #585858;
-}
-
-html body .wrapper main .tasks .task .editTask, html body .wrapper main .tasks .task .deleteTask {
+html body .wrapper main .tasks .task .editTask, html body .wrapper main .tasks .task .taskDone, html body .wrapper main .tasks .task .deleteTask {
   cursor: pointer;
   font-size: 24px;
+}
+
+html body .wrapper main .tasks .task .taskContent {
+  width: 50%;
 }
 
 html body .wrapper main .tasks .task .editTask {
@@ -92,7 +92,18 @@ html body .wrapper main .tasks .task .editTask {
   color: #eeb56b;
 }
 
+html body .wrapper main .tasks .task .taskDone {
+  margin: 0 10px;
+  color: #00d100;
+}
+
 html body .wrapper main .tasks .task .deleteTask {
   margin: 0 7px;
   color: red;
+}
+
+html body .wrapper main .tasks .task .dateTaskAdded {
+  margin-left: 10px;
+  font-size: 18px;
+  color: #7a7a7a;
 }
