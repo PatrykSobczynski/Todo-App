@@ -1,5 +1,7 @@
 $btnColor: #bd5a5a;
 $bcgGradient: linear-gradient(#bd5a5a, #e7a44c);
+$taskDoneColor: rgb(153, 153, 153);
+$delay: .3s;
 
 * {
     margin: 0;
@@ -27,6 +29,8 @@ html {
                 background-color: rgb(255, 255, 255);
                 border: 1px solid black;
                 width: 60%;
+                max-width: 720px;
+                min-height: 300px;
                 padding: 10px;
                 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                 border-radius: 10px;
@@ -49,6 +53,8 @@ html {
 
                     .addInput {
                         width: 70%;
+                        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                        border: none;
                     }
 
                     .addButton {
@@ -58,7 +64,7 @@ html {
                         font-weight: bold;
                         color: white;
                         cursor: pointer;
-                        transition: .3s;
+                        transition: $delay;
                         letter-spacing: 1px;
                         margin-left: 10px;
                         border-radius: 10px;
@@ -77,35 +83,41 @@ html {
                         display: flex;
                         align-items: center;
                         margin: 16px 0;
+                        padding-bottom: 20px;
+                        border-bottom: 1px dashed black;
            
                         .editTask, .taskDone, .deleteTask {
                             cursor: pointer;
                             font-size: 24px;
+                            margin: 0 10px;
                         }
                         
                         .taskContent {
-                            width: 50%;
+                            width: 60%;
+                            transition: $delay;
                         }
 
                         .editTask {
-                            margin: 0 7px 0 14px;
-                            color:#eeb56b;
+                            color: rgb(214, 114, 0);
                         }
                         
                         .taskDone {
-                            margin: 0 10px;
+                            
                             color: rgb(0, 209, 0);
+                        }
+
+                        .taskFinished, .taskFinished-btn {
+                            color: $taskDoneColor;
                         }
                         
                         .deleteTask {
-                            margin: 0 7px;
                             color: red;
                         }
 
                         .dateTaskAdded {
                             margin-left: 10px;
                             font-size: 18px;
-                            color: rgb(122, 122, 122);
+                            color: $taskDoneColor;
                         }
                     }
                 }

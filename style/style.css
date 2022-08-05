@@ -27,6 +27,8 @@ html body .wrapper main {
   background-color: white;
   border: 1px solid black;
   width: 60%;
+  max-width: 720px;
+  min-height: 300px;
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
@@ -51,6 +53,8 @@ html body .wrapper main .addBar .addInput, html body .wrapper main .addBar .addB
 
 html body .wrapper main .addBar .addInput {
   width: 70%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border: none;
 }
 
 html body .wrapper main .addBar .addButton {
@@ -60,7 +64,7 @@ html body .wrapper main .addBar .addButton {
   font-weight: bold;
   color: white;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
   letter-spacing: 1px;
   margin-left: 10px;
   border-radius: 10px;
@@ -76,34 +80,39 @@ html body .wrapper main .tasks .task {
   display: flex;
   align-items: center;
   margin: 16px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed black;
 }
 
 html body .wrapper main .tasks .task .editTask, html body .wrapper main .tasks .task .taskDone, html body .wrapper main .tasks .task .deleteTask {
   cursor: pointer;
   font-size: 24px;
+  margin: 0 10px;
 }
 
 html body .wrapper main .tasks .task .taskContent {
-  width: 50%;
+  width: 60%;
+  transition: 0.3s;
 }
 
 html body .wrapper main .tasks .task .editTask {
-  margin: 0 7px 0 14px;
-  color: #eeb56b;
+  color: #d67200;
 }
 
 html body .wrapper main .tasks .task .taskDone {
-  margin: 0 10px;
   color: #00d100;
 }
 
+html body .wrapper main .tasks .task .taskFinished, html body .wrapper main .tasks .task .taskFinished-btn {
+  color: #999999;
+}
+
 html body .wrapper main .tasks .task .deleteTask {
-  margin: 0 7px;
   color: red;
 }
 
 html body .wrapper main .tasks .task .dateTaskAdded {
   margin-left: 10px;
   font-size: 18px;
-  color: #7a7a7a;
+  color: #999999;
 }
