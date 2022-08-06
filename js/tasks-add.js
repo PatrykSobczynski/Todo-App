@@ -2,6 +2,13 @@ const addBar = document.querySelector(".addInput");
 const addButton = document.querySelector(".addButton");
 const tasks = document.querySelector(".tasks");
 
+// TaskInfo actions
+const taskAdded = document.querySelector(".taskAddedConfirm");
+const taskEdit = document.querySelector(".taskEditConfirm");
+const taskDone = document.querySelector(".taskDoneConfirm");
+const taskDeleted = document.querySelector(".taskDeletedConfirm");
+
+
 function addNewTask(value) {
     // if value in bar is null or blank, dont do anythink
     if (value === "") {
@@ -41,17 +48,22 @@ function addNewTask(value) {
 
         addBar.value = "";
 
+        taskInfo(taskAdded);
+
         tEdit.addEventListener("click", () => {
             editTask(newTask, pValue, value);
+            // TaskInfo edited below, on modify button
         })
 
         tDone.addEventListener("click", () => {
             pValue.classList.toggle("taskFinished");
             tDone.classList.toggle("taskFinished-btn");
+            taskInfo(taskDone);
         });
 
         tDelete.addEventListener("click", () => {
             tasks.removeChild(newTask);
+            taskInfo(taskDeleted);
         })
     }
 }
@@ -72,9 +84,19 @@ function editTask(task, contentToModify, content) {
         if (contentToModify.innerHTML === "") {
             tasks.removeChild(task);
         }
+        taskInfo(taskEdit);
         e.preventDefault();
     })
 }
+
+function taskInfo(taskAction) {
+    taskAction.classList.add("taskInfo-active");
+    setTimeout(() => {
+        taskAction.classList.remove("taskInfo-active");
+    }, 1200);
+}
+
+
 
 addButton.addEventListener("click", (e) => {
     addNewTask(addBar.value);
@@ -89,5 +111,7 @@ addButton.addEventListener("click", (e) => {
 // Maybe, if is only 1 task, bottom-border doeasn't exist
 
 // bugs
-// if you edited task, and you want to edit it again,
+// 1. if you edited task, and you want to edit it again,
 // you will see old content value on modify-area
+
+// 2. if there are 2 modify-area open, and you click modify, the page will refresh

@@ -24,6 +24,7 @@ html body .wrapper {
 }
 
 html body .wrapper main {
+  position: relative;
   background-color: white;
   border: 1px solid black;
   width: 60%;
@@ -32,6 +33,7 @@ html body .wrapper main {
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 html body .wrapper main .mainHeader {
@@ -93,6 +95,7 @@ html body .wrapper main .tasks .task .editTask, html body .wrapper main .tasks .
 html body .wrapper main .tasks .task .taskContent {
   width: 60%;
   transition: 0.3s;
+  overflow: hidden;
 }
 
 html body .wrapper main .tasks .task .editTask {
@@ -115,4 +118,35 @@ html body .wrapper main .tasks .task .dateTaskAdded {
   margin-left: 10px;
   font-size: 18px;
   color: #999999;
+}
+
+html body .wrapper main .taskInfo {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  padding: 0 10px 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  transition: 0.5s;
+  transform: translateX(100%);
+}
+
+html body .wrapper main .taskInfo-active {
+  transform: translateX(0);
+}
+
+html body .wrapper main .taskAddedConfirm {
+  background-color: rgba(167, 252, 174, 0.5);
+}
+
+html body .wrapper main .taskEditConfirm {
+  background-color: rgba(250, 162, 48, 0.5);
+}
+
+html body .wrapper main .taskDoneConfirm {
+  background-color: rgba(155, 155, 155, 0.5);
+}
+
+html body .wrapper main .taskDeletedConfirm {
+  background-color: rgba(245, 61, 61, 0.5);
 }
