@@ -82,8 +82,11 @@ html body .wrapper main .tasks .task {
   display: flex;
   align-items: center;
   margin: 16px 0;
-  padding-bottom: 20px;
-  border-bottom: 1px dashed black;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  transform: translateX(-120%);
+  transition: 0.3s;
 }
 
 html body .wrapper main .tasks .task .editTask, html body .wrapper main .tasks .task .taskDone, html body .wrapper main .tasks .task .deleteTask {
@@ -120,6 +123,14 @@ html body .wrapper main .tasks .task .dateTaskAdded {
   color: #999999;
 }
 
+html body .wrapper main .tasks .task-active {
+  transform: translateX(0);
+}
+
+html body .wrapper main .tasks .task-remove {
+  transform: translateX(120%);
+}
+
 html body .wrapper main .taskInfo {
   position: absolute;
   top: 10px;
@@ -149,4 +160,13 @@ html body .wrapper main .taskDoneConfirm {
 
 html body .wrapper main .taskDeletedConfirm {
   background-color: rgba(245, 61, 61, 0.5);
+}
+
+@keyframes taskRemoveAnimation {
+  50% {
+    transform: translateX(-15%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
 }

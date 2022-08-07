@@ -85,8 +85,11 @@ html {
                         display: flex;
                         align-items: center;
                         margin: 16px 0;
-                        padding-bottom: 20px;
-                        border-bottom: 1px dashed black;
+                        padding: 10px 20px;
+                        border: 1px solid black;
+                        border-radius: 10px;
+                        transform: translateX(-120%);
+                        transition: $delay;
            
                         .editTask, .taskDone, .deleteTask {
                             cursor: pointer;
@@ -124,6 +127,14 @@ html {
                             color: $taskDoneColor;
                         }
                     }
+
+                    .task-active {
+                        transform: translateX(0);
+                    }
+
+                    .task-remove {
+                        transform: translateX(120%);
+                    }
                 }
 
                 // Buttons Animations
@@ -159,5 +170,16 @@ html {
                 }
             }
         }
+    }
+}
+
+@keyframes taskRemoveAnimation {
+
+    50% {
+        transform: translateX(-15%);
+    }
+
+    100% {
+        transform: translateX(120%);
     }
 }

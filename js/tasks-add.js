@@ -18,7 +18,7 @@ function addNewTask(value) {
         // Date, when task was added
         const date = new Date();
 
-        // New Task created
+        // New Task creating
         const newTask = document.createElement("div");
         newTask.classList.add("task");
 
@@ -39,6 +39,7 @@ function addNewTask(value) {
         pValue.innerHTML = value
         pDate.textContent = `${("0" + date.getDate()).slice(-2)}.${("0" + date.getMonth()).slice(-2)}.${date.getFullYear()}`;
 
+        // adding elements to newTask div
         tasks.appendChild(newTask);
         newTask.appendChild(pValue);
         newTask.appendChild(tEdit);
@@ -46,10 +47,14 @@ function addNewTask(value) {
         newTask.appendChild(tDelete);
         newTask.appendChild(pDate);
 
+        // clearing input
         addBar.value = "";
 
+        // animations
         taskInfo(taskAdded);
+        AddTaskAnimation(newTask);
 
+        // Do somethink after click
         tEdit.addEventListener("click", () => {
             editTask(newTask, pValue, value);
             // TaskInfo edited below, on modify button
@@ -62,8 +67,11 @@ function addNewTask(value) {
         });
 
         tDelete.addEventListener("click", () => {
-            tasks.removeChild(newTask);
-            taskInfo(taskDeleted);
+            newTask.style.animation = "taskRemoveAnimation .6s linear both"
+            setTimeout(() => {
+                tasks.removeChild(newTask);
+                taskInfo(taskDeleted);
+            }, 650);
         })
     }
 }
@@ -81,10 +89,13 @@ function editTask(task, contentToModify, content) {
 
     submitButton.addEventListener("click", (e) => {
         contentToModify.innerHTML = newValue.value;
+        content = newValue.value;
         if (contentToModify.innerHTML === "") {
             tasks.removeChild(task);
+            taskInfo(taskDeleted);
+        } else {
+            taskInfo(taskEdit);
         }
-        taskInfo(taskEdit);
         e.preventDefault();
     })
 }
@@ -96,7 +107,11 @@ function taskInfo(taskAction) {
     }, 1200);
 }
 
-
+function AddTaskAnimation(task) {
+    setTimeout(() => {
+        task.classList.add("task-active");
+    }, 100);
+}
 
 addButton.addEventListener("click", (e) => {
     addNewTask(addBar.value);
@@ -104,11 +119,13 @@ addButton.addEventListener("click", (e) => {
 });
 
 
+
+
 // todo
 // Memory in local storage
 // Task list is downloadable
-// Animation after task deleted/finished
 // Maybe, if is only 1 task, bottom-border doeasn't exist
+// Maybe, use only 1 info div, and after click, change the textContent and add/remove class
 
 // bugs
 // 1. if you edited task, and you want to edit it again,
