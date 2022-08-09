@@ -57,23 +57,26 @@ html body .wrapper main .addBar .addInput {
   width: 70%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border: none;
+  outline: 0;
 }
 
 html body .wrapper main .addBar .addButton {
+  margin-left: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+html body .wrapper main .addButton, html body .wrapper main .submitButton {
   background-color: #bd5a5a;
   border-color: #bd5a5a;
   text-transform: uppercase;
   font-weight: bold;
   color: white;
   cursor: pointer;
-  transition: 0.3s;
   letter-spacing: 1px;
-  margin-left: 10px;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-html body .wrapper main .addBar .addButton:hover {
+html body .wrapper main .addButton:hover, html body .wrapper main .submitButton:hover {
   background-color: transparent;
   color: #bd5a5a;
 }
@@ -87,6 +90,7 @@ html body .wrapper main .tasks .task {
   border-radius: 10px;
   transform: translateX(-120%);
   transition: 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 html body .wrapper main .tasks .task .editTask, html body .wrapper main .tasks .task .taskDone, html body .wrapper main .tasks .task .deleteTask {
@@ -109,7 +113,11 @@ html body .wrapper main .tasks .task .taskDone {
   color: #00d100;
 }
 
-html body .wrapper main .tasks .task .taskFinished, html body .wrapper main .tasks .task .taskFinished-btn {
+html body .wrapper main .tasks .task .taskFinished {
+  text-decoration: line-through;
+}
+
+html body .wrapper main .tasks .task .taskFinished-btn {
   color: #999999;
 }
 
@@ -121,6 +129,22 @@ html body .wrapper main .tasks .task .dateTaskAdded {
   margin-left: 10px;
   font-size: 18px;
   color: #999999;
+}
+
+html body .wrapper main .tasks .task .newValue {
+  width: 50%;
+  border: 2px solid #bd5a5a;
+  border-radius: 10px;
+  padding: 6px 8px;
+}
+
+html body .wrapper main .tasks .task .newValue:focus-visible {
+  outline: 0;
+  color: #bd5a5a;
+}
+
+html body .wrapper main .tasks .task .submitButton {
+  padding: 6px 8px;
 }
 
 html body .wrapper main .tasks .task-active {

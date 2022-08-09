@@ -1,6 +1,7 @@
 $btnColor: #bd5a5a;
 $bcgGradient: linear-gradient(#bd5a5a, #e7a44c);
 $taskDoneColor: rgb(153, 153, 153);
+$defaultBoxShadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 $delay: .3s;
 
 * {
@@ -33,7 +34,7 @@ html {
                 max-width: 720px;
                 min-height: 300px;
                 padding: 10px;
-                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                $defaultBoxShadow;
                 border-radius: 10px;
                 overflow: hidden;
 
@@ -55,29 +56,32 @@ html {
 
                     .addInput {
                         width: 70%;
-                        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                        box-shadow: $defaultBoxShadow;
                         border: none;
+                        outline: 0;
                     }
 
                     .addButton {
-                        background-color: $btnColor;
-                        border-color: $btnColor;
-                        text-transform: uppercase;
-                        font-weight: bold;
-                        color: white;
-                        cursor: pointer;
-                        transition: $delay;
-                        letter-spacing: 1px;
                         margin-left: 10px;
-                        border-radius: 10px;
-                        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                        box-shadow: $defaultBoxShadow;
 
                     }
+                }
 
-                    .addButton:hover {
-                        background-color: transparent;
-                        color: $btnColor;
-                    }
+                .addButton, .submitButton {
+                    background-color: $btnColor;
+                    border-color: $btnColor;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    color: white;
+                    cursor: pointer;
+                    letter-spacing: 1px;
+                    border-radius: 10px;
+                }
+
+                .addButton:hover, .submitButton:hover {
+                    background-color: transparent;
+                    color: $btnColor;
                 }
 
                 .tasks {
@@ -90,6 +94,7 @@ html {
                         border-radius: 10px;
                         transform: translateX(-120%);
                         transition: $delay;
+                        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
            
                         .editTask, .taskDone, .deleteTask {
                             cursor: pointer;
@@ -109,11 +114,13 @@ html {
                         }
                         
                         .taskDone {
-                            
                             color: rgb(0, 209, 0);
                         }
 
-                        .taskFinished, .taskFinished-btn {
+                        .taskFinished {
+                            text-decoration: line-through;
+                        }
+                        .taskFinished-btn {
                             color: $taskDoneColor;
                         }
                         
@@ -124,7 +131,23 @@ html {
                         .dateTaskAdded {
                             margin-left: 10px;
                             font-size: 18px;
-                            color: $taskDoneColor;
+                            color: rgb(153, 153, 153);
+                        }
+
+                        .newValue {
+                            width: 50%;
+                            border: 2px solid $btnColor;
+                            border-radius: 10px;
+                            padding: 6px 8px;
+                        }
+                        
+                        .newValue:focus-visible {
+                            outline: 0;
+                            color: $btnColor;
+                        }
+
+                        .submitButton {
+                            padding: 6px 8px;
                         }
                     }
 

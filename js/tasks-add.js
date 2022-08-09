@@ -22,14 +22,14 @@ function addNewTask(value) {
         const newTask = document.createElement("div");
         newTask.classList.add("task");
 
-        // creating elements inside new task
+        // Creating elements inside new task
         const pValue = document.createElement("p");
         const tEdit = document.createElement("i");
         const tDone = document.createElement("i");
         const tDelete = document.createElement("i");
         const pDate = document.createElement("p");
 
-        // adding class to new elements
+        // Adding class to new elements
         pValue.classList.add("taskContent");
         tEdit.classList.add("editTask", "fa-solid", "fa-pen-to-square")
         tDone.classList.add("taskDone", "fa-solid", "fa-check");
@@ -39,7 +39,7 @@ function addNewTask(value) {
         pValue.innerHTML = value
         pDate.textContent = `${("0" + date.getDate()).slice(-2)}.${("0" + date.getMonth()).slice(-2)}.${date.getFullYear()}`;
 
-        // adding elements to newTask div
+        // Adding elements to newTask div
         tasks.appendChild(newTask);
         newTask.appendChild(pValue);
         newTask.appendChild(tEdit);
@@ -47,10 +47,10 @@ function addNewTask(value) {
         newTask.appendChild(tDelete);
         newTask.appendChild(pDate);
 
-        // clearing input
+        // Clearing input
         addBar.value = "";
 
-        // animations
+        // Animations
         taskInfo(taskAdded);
         AddTaskAnimation(newTask);
 
@@ -78,6 +78,7 @@ function addNewTask(value) {
 
 function editTask(task, contentToModify, content) {
 
+    // Editing tasks from
     contentToModify.innerHTML = `
             <form>
             <input class = "newValue" value="${content}">
@@ -88,18 +89,27 @@ function editTask(task, contentToModify, content) {
     const newValue = document.querySelector(".newValue");
 
     submitButton.addEventListener("click", (e) => {
-        contentToModify.innerHTML = newValue.value;
-        content = newValue.value;
+        editTaskAnimation(task);
+        setTimeout(() => {
+            // Changing task value
+            contentToModify.innerHTML = newValue.value;
+            content = newValue.value;
+        }, 300);
+
+        // If task value is equal null or empty, task will remove
         if (contentToModify.innerHTML === "") {
             tasks.removeChild(task);
             taskInfo(taskDeleted);
-        } else {
+        }
+        else {
             taskInfo(taskEdit);
         }
+
         e.preventDefault();
     })
 }
 
+// ANIMATIONS ⬇ ⬇ ⬇ ⬇
 function taskInfo(taskAction) {
     taskAction.classList.add("taskInfo-active");
     setTimeout(() => {
@@ -113,6 +123,13 @@ function AddTaskAnimation(task) {
     }, 100);
 }
 
+function editTaskAnimation(task) {
+    task.style.opacity = 0;
+    setTimeout(() => {
+        task.style.opacity = 1.0;
+    }, 500);
+}
+
 addButton.addEventListener("click", (e) => {
     addNewTask(addBar.value);
     e.preventDefault();
@@ -124,7 +141,6 @@ addButton.addEventListener("click", (e) => {
 // todo
 // Memory in local storage
 // Task list is downloadable
-// Maybe, if is only 1 task, bottom-border doeasn't exist
 // Maybe, use only 1 info div, and after click, change the textContent and add/remove class
 
 // bugs
