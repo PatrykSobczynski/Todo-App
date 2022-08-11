@@ -56,7 +56,7 @@ function addNewTask(value) {
 
         // Do somethink after click
         tEdit.addEventListener("click", () => {
-            editTask(newTask, pValue, value);
+            editTask(newTask, pValue);
             // TaskInfo edited below, on modify button
         })
 
@@ -76,9 +76,13 @@ function addNewTask(value) {
     }
 }
 
-function editTask(task, contentToModify, content) {
+function editTask(task, contentToModify) {
+
+    content = contentToModify.textContent;
 
     // Editing tasks from
+    // Do hideTaskOptions class
+    task.classList.add("hideTaskOptions");
     contentToModify.innerHTML = `
             <form>
             <input class = "newValue" value="${content}">
@@ -92,19 +96,19 @@ function editTask(task, contentToModify, content) {
         editTaskAnimation(task);
         setTimeout(() => {
             // Changing task value
-            contentToModify.innerHTML = newValue.value;
             content = newValue.value;
+            contentToModify.innerHTML = newValue.value;
+
+            // If task value is equal null or empty, task will remove
+            if (contentToModify.innerHTML === "") {
+                tasks.removeChild(task);
+                taskInfo(taskDeleted);
+            }
+            else {
+                taskInfo(taskEdit);
+            }
         }, 300);
-
-        // If task value is equal null or empty, task will remove
-        if (contentToModify.innerHTML === "") {
-            tasks.removeChild(task);
-            taskInfo(taskDeleted);
-        }
-        else {
-            taskInfo(taskEdit);
-        }
-
+        task.classList.remove("hideTaskOptions");
         e.preventDefault();
     })
 }
@@ -144,7 +148,4 @@ addButton.addEventListener("click", (e) => {
 // Maybe, use only 1 info div, and after click, change the textContent and add/remove class
 
 // bugs
-// 1. if you edited task, and you want to edit it again,
-// you will see old content value on modify-area
-
-// 2. if there are 2 modify-area open, and you click modify, the page will refresh
+// 1. if there are 2 modify-area open, and you click modify, the page will refresh

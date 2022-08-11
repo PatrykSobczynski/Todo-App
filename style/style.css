@@ -8,10 +8,11 @@ html {
   min-height: 100%;
   font-size: 24px;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
 }
 
 html body {
-  background-color: red;
+  background-color: #bd5a5a;
   background-image: linear-gradient(#bd5a5a, #e7a44c);
 }
 
@@ -28,6 +29,7 @@ html body .wrapper main {
   background-color: white;
   border: 1px solid black;
   width: 60%;
+  min-width: 380px;
   max-width: 720px;
   min-height: 300px;
   padding: 10px;
@@ -42,6 +44,12 @@ html body .wrapper main .mainHeader {
   font-size: 34px;
   font-weight: bold;
   letter-spacing: 1px;
+}
+
+html body .wrapper main .mainHeader .title-do {
+  padding: 2px 4px;
+  background-color: #bd5a5a;
+  color: white;
 }
 
 html body .wrapper main .addBar {
@@ -74,6 +82,7 @@ html body .wrapper main .addButton, html body .wrapper main .submitButton {
   cursor: pointer;
   letter-spacing: 1px;
   border-radius: 10px;
+  transition: 0.3s;
 }
 
 html body .wrapper main .addButton:hover, html body .wrapper main .submitButton:hover {
@@ -85,7 +94,7 @@ html body .wrapper main .tasks .task {
   display: flex;
   align-items: center;
   margin: 16px 0;
-  padding: 10px 20px;
+  padding: 14px 20px;
   border: 1px solid black;
   border-radius: 10px;
   transform: translateX(-120%);
@@ -155,15 +164,21 @@ html body .wrapper main .tasks .task-remove {
   transform: translateX(120%);
 }
 
+html body .wrapper main .tasks .task:hover {
+  background-color: rgba(236, 236, 236, 0.5);
+  transform: scale(1.005);
+}
+
 html body .wrapper main .taskInfo {
   position: absolute;
   top: 10px;
   right: 0;
-  padding: 0 10px 0 4px;
+  padding: 2px 10px 2px 4px;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   transition: 0.5s;
   transform: translateX(100%);
+  border-radius: 10px 0 0 10px;
 }
 
 html body .wrapper main .taskInfo-active {
@@ -184,6 +199,18 @@ html body .wrapper main .taskDoneConfirm {
 
 html body .wrapper main .taskDeletedConfirm {
   background-color: rgba(245, 61, 61, 0.5);
+}
+
+html body .wrapper main::before {
+  content: "";
+  position: absolute;
+  display: block;
+  min-width: 200px;
+  min-height: 200px;
+  background-image: linear-gradient(#bd5a5a, #e7a44c);
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, 50%) rotate(45deg);
 }
 
 @keyframes taskRemoveAnimation {
