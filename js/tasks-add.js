@@ -24,6 +24,7 @@ function addNewTask(value) {
 
         // Creating elements inside new task
         const pValue = document.createElement("p");
+        const optionsDiv = document.createElement("div");
         const tEdit = document.createElement("i");
         const tDone = document.createElement("i");
         const tDelete = document.createElement("i");
@@ -31,6 +32,7 @@ function addNewTask(value) {
 
         // Adding class to new elements
         pValue.classList.add("taskContent");
+        optionsDiv.classList.add("optionsDiv");
         tEdit.classList.add("editTask", "fa-solid", "fa-pen-to-square")
         tDone.classList.add("taskDone", "fa-solid", "fa-check");
         tDelete.classList.add("deleteTask", "fa-solid", "fa-xmark");
@@ -41,11 +43,14 @@ function addNewTask(value) {
 
         // Adding elements to newTask div
         tasks.appendChild(newTask);
+
         newTask.appendChild(pValue);
-        newTask.appendChild(tEdit);
-        newTask.appendChild(tDone);
-        newTask.appendChild(tDelete);
-        newTask.appendChild(pDate);
+        newTask.appendChild(optionsDiv)
+
+        optionsDiv.appendChild(tEdit);
+        optionsDiv.appendChild(tDone);
+        optionsDiv.appendChild(tDelete);
+        optionsDiv.appendChild(pDate);
 
         // Clearing input
         addBar.value = "";
@@ -78,11 +83,15 @@ function addNewTask(value) {
 
 function editTask(task, contentToModify) {
 
+    const taskChilds = document.querySelectorAll(".task > *:not(:first-child)");
     content = contentToModify.textContent;
 
+
+
     // Editing tasks from
-    // Do hideTaskOptions class
-    task.classList.add("hideTaskOptions");
+    taskChilds.forEach(taskChild => {
+        taskChild.classList.add("hideTaskOptions");
+    })
     contentToModify.innerHTML = `
             <form>
             <input class = "newValue" value="${content}">
@@ -108,7 +117,11 @@ function editTask(task, contentToModify) {
                 taskInfo(taskEdit);
             }
         }, 300);
-        task.classList.remove("hideTaskOptions");
+
+        taskChilds.forEach(taskChild => {
+            taskChild.classList.remove("hideTaskOptions");
+        })
+
         e.preventDefault();
     })
 }
