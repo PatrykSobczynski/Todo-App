@@ -228,6 +228,16 @@ html body .wrapper main::before {
   transform: translate(-50%, 50%) rotate(45deg);
 }
 
+@media (max-width: 380px) {
+  html body .wrapper main {
+    min-width: 300px;
+    width: 100%;
+  }
+  html body .wrapper main .addBar .addButton {
+    margin: 20px auto;
+  }
+}
+
 @keyframes taskRemoveAnimation {
   50% {
     transform: translateX(-15%);

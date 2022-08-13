@@ -237,6 +237,25 @@ html {
     }
 }
 
+@media (max-width: 380px) {
+    html {
+        body {
+            .wrapper {
+                main {
+                    min-width: 300px;
+                    width: 100%;
+
+                    .addBar {
+                        .addButton {
+                            margin: 20px auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @keyframes taskRemoveAnimation {
 
     50% {
