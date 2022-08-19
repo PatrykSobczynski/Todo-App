@@ -33,19 +33,19 @@ function addNewTask(value) {
         // Adding class to new elements
         pValue.classList.add("taskContent");
         optionsDiv.classList.add("optionsDiv");
-        tEdit.classList.add("editTask", "fa-solid", "fa-pen-to-square")
+        tEdit.classList.add("editTask", "fa-solid", "fa-pen-to-square");
         tDone.classList.add("taskDone", "fa-solid", "fa-check");
         tDelete.classList.add("deleteTask", "fa-solid", "fa-xmark");
         pDate.classList.add("dateTaskAdded");
 
-        pValue.innerHTML = value
+        pValue.innerHTML = value;
         pDate.textContent = `${("0" + date.getDate()).slice(-2)}.${("0" + date.getMonth()).slice(-2)}.${date.getFullYear()}`;
 
         // Adding elements to newTask div
         tasks.appendChild(newTask);
 
         newTask.appendChild(pValue);
-        newTask.appendChild(optionsDiv)
+        newTask.appendChild(optionsDiv);
 
         optionsDiv.appendChild(tEdit);
         optionsDiv.appendChild(tDone);
@@ -153,7 +153,33 @@ addButton.addEventListener("click", (e) => {
 });
 
 
+// Confirm closing window
+window.onbeforeunload = function (e) {
+    const warningMessage = "Tasks will not be saved, are you sure you want to close this window?";
+    e = e || window.event;
 
+    if (e) {
+        e.returnValue = warningMessage;
+    }
+    return warningMessage;
+}
+
+// Tasks to PDF
+function downloadTasks() {
+    const { jsPDF } = window.jspdf;
+
+    const t = [...document.querySelectorAll(".task .taskContent")];
+
+    const taskPDF = new jsPDF();
+    console.log(taskPDF);
+    t.forEach((task) => {
+        console.log(task.textContent);
+    });
+}
+
+const downloadTasksBtn = document.querySelector(".downloadTasks");
+
+downloadTasksBtn.addEventListener("click", downloadTasks);
 
 // todo
 // Memory in local storage
