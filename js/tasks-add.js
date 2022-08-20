@@ -182,7 +182,7 @@ function downloadTasks() {
     taskList.forEach(task => {
         downloadList.push(task.textContent);
     })
-    
+
     // new line brake doens't work in html2pdf 
     // const listJoined = downloadList.join("\n");
     const listJoined = downloadList.join(" ");
@@ -196,7 +196,6 @@ downloadTasksBtn.addEventListener("click", downloadTasks);
 
 // todo
 // Memory in local storage
-// Task list is downloadable
 // Maybe, use only 1 info div, and after click, change the textContent and add/remove class
 
 // bugs

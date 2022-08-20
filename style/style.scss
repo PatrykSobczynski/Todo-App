@@ -41,11 +41,32 @@ html {
                 overflow: hidden;
 
                 .mainHeader {
+                    display: flex;
+                    align-items: center;
                     text-align: center;
                     text-transform: uppercase;
                     font-size: 34px;
                     font-weight: bold;
                     letter-spacing: 1px;
+
+                    .downloadTasks {
+                        margin: 10px 20px;
+                        padding: 10px 20px;
+                        background-color: $btnColor;
+                        border-color: $btnColor;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        color: white;
+                        cursor: pointer;
+                        letter-spacing: 1px;
+                        border-radius: 10px;
+                        transition: $delay;
+                    }
+    
+                    .downloadTasks:hover {
+                        background-color: transparent;
+                        color: $btnColor;
+                    }
 
                     .title-do {
                         padding: 2px 4px;
@@ -232,6 +253,19 @@ html {
                 bottom: 0;
                 left: 0;
                 transform: translate(-50%, 50%) rotate(45deg);
+            }
+        }
+    }
+}
+
+
+@media (max-width: 750px) {
+    html {
+        body {
+            .wrapper {
+                .mainHeader {
+                    flex-direction: column-reverse;
+                }
             }
         }
     }

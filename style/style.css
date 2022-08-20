@@ -39,11 +39,32 @@ html body .wrapper main {
 }
 
 html body .wrapper main .mainHeader {
+  display: flex;
+  align-items: center;
   text-align: center;
   text-transform: uppercase;
   font-size: 34px;
   font-weight: bold;
   letter-spacing: 1px;
+}
+
+html body .wrapper main .mainHeader .downloadTasks {
+  margin: 10px 20px;
+  padding: 10px 20px;
+  background-color: #bd5a5a;
+  border-color: #bd5a5a;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+html body .wrapper main .mainHeader .downloadTasks:hover {
+  background-color: transparent;
+  color: #bd5a5a;
 }
 
 html body .wrapper main .mainHeader .title-do {
@@ -226,6 +247,12 @@ html body .wrapper main::before {
   bottom: 0;
   left: 0;
   transform: translate(-50%, 50%) rotate(45deg);
+}
+
+@media (max-width: 750px) {
+  html body .wrapper .mainHeader {
+    flex-direction: column-reverse;
+  }
 }
 
 @media (max-width: 380px) {
