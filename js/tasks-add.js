@@ -38,6 +38,12 @@ function addNewTask(value) {
         tDelete.classList.add("deleteTask", "fa-solid", "fa-xmark");
         pDate.classList.add("dateTaskAdded");
 
+        // Automaticly adding dot
+        const val = value[value.length - 1];
+        if (val != "." && val != "!" && val != "?") {
+            value += ".";
+        }
+
         pValue.innerHTML = value;
         pDate.textContent = `${("0" + date.getDate()).slice(-2)}.${("0" + date.getMonth()).slice(-2)}.${date.getFullYear()}`;
 
@@ -166,19 +172,26 @@ window.onbeforeunload = function (e) {
 
 // Tasks to PDF
 function downloadTasks() {
-    const { jsPDF } = window.jspdf;
+    const options = {
+        margin: 10,
+        filename: "Tasks.pdf",
+    }
+    const taskList = document.querySelectorAll(".task .taskContent");
+    const downloadList = ["Tasks: "];
 
-    const t = [...document.querySelectorAll(".task .taskContent")];
+    taskList.forEach(task => {
+        downloadList.push(task.textContent);
+    })
+    
+    // new line brake doens't work in html2pdf 
+    // const listJoined = downloadList.join("\n");
+    const listJoined = downloadList.join(" ");
 
-    const taskPDF = new jsPDF();
-    console.log(taskPDF);
-    t.forEach((task) => {
-        console.log(task.textContent);
-    });
+    console.log(listJoined);
+    window.html2pdf().set(options).from(listJoined).save();
 }
 
 const downloadTasksBtn = document.querySelector(".downloadTasks");
-
 downloadTasksBtn.addEventListener("click", downloadTasks);
 
 // todo
