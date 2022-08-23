@@ -9,13 +9,15 @@ const taskEdit = document.querySelector(".taskEditConfirm");
 const taskDone = document.querySelector(".taskDoneConfirm");
 const taskDeleted = document.querySelector(".taskDeletedConfirm");
 
-const tasksList = [];
+const tasksList = JSON.parse(localStorage.getItem("Task")) || [];
+
+const date = new Date();
 
 // Task class object
 class Task {
-    constructor(value) {
+    constructor(value, date) {
         this.value = value;
-        this.date = new Date();
+        this.date = date;
         this.isDone = false;
         // this.edit = editTask;
     }
@@ -26,20 +28,54 @@ function addNewTask(value) {
         console.log("empty value");
         return;
     } else {
-        const createTask = new Task(value);
+        const date = new Date();
+        const taskCreatedDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+
+        // Automaticly adding dot
+        const val = value[value.length - 1];
+        if (val != "." && val != "!" && val != "?") {
+            value += ".";
+        }
+
+        const createTask = new Task(value, taskCreatedDate);
+
         tasksList.push(createTask);
+
         const task = document.createElement("li");
-        task.innerHTML = createTask.value;
+        task.innerHTML = renderTasks(createTask);
         task.classList.add("task");
         ul.appendChild(task);
 
         addBar.value = "";
+
+        // Save task in browser's memory
+        localStorage.setItem("Task", JSON.stringify(tasksList))
 
         // Animations
         taskInfo(taskAdded);
         AddTaskAnimation(task);
     }
 }
+
+function ShowList(tasks = [], tasksHolder) {
+    tasksHolder.innerHTML = tasks.map((task) => {
+        return `
+        <li class="task task-active">
+            ${renderTasks(task)}
+        </li>`
+    }).join('');
+}
+
+function renderTasks(task) {
+    return `
+        <p class="taskContent">${task.value}</p>
+        <div class="optionsDiv">
+            <p>${task.date}</p>
+        </div>
+    `
+}
+
+ShowList(tasksList, ul);
 
 // function addNewTask(value) {
 //     // if value in bar is null or blank, dont do anythink
