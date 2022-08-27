@@ -9,9 +9,6 @@ const taskEdit = document.querySelector(".taskEditConfirm");
 const taskDone = document.querySelector(".taskDoneConfirm");
 const taskDeleted = document.querySelector(".taskDeletedConfirm");
 
-const taskStatusBtn = [...document.querySelectorAll(".task .taskDone")];
-const taskDeleteBtn = [...document.querySelectorAll(".task .deleteTask")]
-
 let tasksList = JSON.parse(localStorage.getItem("Task")) || [];
 
 const date = new Date();
@@ -90,16 +87,23 @@ function deleteTask(e) {
     const elementParent = e.target.parentElement.parentElement;
     const id = elementParent.dataset.id;
 
-    // second param is 1, because we want to delete only one element
-    tasksList.splice(id, 1);
+    elementParent.style.animation = "taskRemoveAnimation .6s linear both";
 
-    localStorage.setItem("Task", JSON.stringify(tasksList));
+    setTimeout(() => {
+        // second param is 1, because we want to delete only one element
+        tasksList.splice(id, 1);
 
-    ShowList(tasksList, ul);
-    taskInfo(taskDeleted);
+        localStorage.setItem("Task", JSON.stringify(tasksList));
+
+        ShowList(tasksList, ul);
+        taskInfo(taskDeleted);
+    }, 650);
 }
 
 ShowList(tasksList, ul);
+
+const taskStatusBtn = [...document.querySelectorAll(".task .taskDone")];
+const taskDeleteBtn = [...document.querySelectorAll(".task .deleteTask")];
 
 taskStatusBtn.forEach(task => {
     task.addEventListener("click", changeTaskStatus);
@@ -108,6 +112,7 @@ taskStatusBtn.forEach(task => {
 taskDeleteBtn.forEach(task => {
     task.addEventListener("click", deleteTask)
 })
+
 
 // ANIMATIONS ⬇ ⬇ ⬇ ⬇
 function taskInfo(taskAction) {
@@ -165,5 +170,6 @@ downloadTasksBtn.addEventListener("click", downloadTasks);
 // Maybe, use only 1 info div, and after click, change the textContent and add/remove class
 
 // bugs
-// 1. You can only one time click button, if you want to click again it doesn't work
+// 1. (If you added new task) Before task will be clicable, you need refresh website.
+// 2. You can only one time click button, if you want to click again it doesn't work
 //      untill you refresh the website
